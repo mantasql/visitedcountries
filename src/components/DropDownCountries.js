@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
+import AddButton from "./AddButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
-
-const countriesList = [];
 
 const DropDownCountries = () => {
   const [countries, setCountries] = useState([]);
   const [selects, setSelects] = useState();
 
-  const URL = "https://restcountries.com/v2/all?fields=name";
+  const URL =
+    "https://restcountries.com/v2/all?fields=name,region,area,population,alpha3Code";
 
   useEffect(() => {
     fetch(URL)
@@ -24,11 +24,6 @@ const DropDownCountries = () => {
     </option>
   ));
 
-  const addCountry = () => {
-    countriesList.push(selects);
-    console.log(countriesList);
-  };
-
   return (
     <div className="allContent">
       <h1>{selects}</h1>
@@ -39,10 +34,7 @@ const DropDownCountries = () => {
       >
         {optionItems}
       </Form.Select>
-      <button onClick={addCountry}>Add Country</button>
-      {countriesList.map((country) => (
-        <li>{country}</li>
-      ))}
+      <AddButton selected={selects} />
     </div>
   );
 };
