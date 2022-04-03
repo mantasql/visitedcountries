@@ -2,8 +2,6 @@ import DropDownCountries from "./components/DropDownCountries";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ListGroup } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import AddButton from "./components/AddButton";
-import * as ReactDOM from "react-dom";
 
 function App() {
   const [countries, setCountries] = useState([]);

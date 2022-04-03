@@ -15,7 +15,7 @@ const DropDownCountries = ({ countries, onSelect }) => {
   return (
     <div className="allContent">
       <Form.Select
-        style={{ fontSize: 15, width: 300 }}
+        style={{ fontSize: 15, width: 300, marginBottom: 15 }}
         value={selects}
         onChange={(e) => setSelects(e.target.value)}
       >
