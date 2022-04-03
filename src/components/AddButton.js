@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
 
 const countriesList = [];
 
 const AddButton = ({ selected, onSelect }) => {
   return (
     <div>
-      <button onClick={() => onSelect(selected)}>Add Country</button>
+      <Button variant="outline-success" onClick={() => onSelect(selected)}>
+        Add Country
+      </Button>
     </div>
   );
 };

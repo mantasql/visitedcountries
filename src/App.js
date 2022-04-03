@@ -1,5 +1,6 @@
 import DropDownCountries from "./components/DropDownCountries";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ListGroup } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import AddButton from "./components/AddButton";
 import * as ReactDOM from "react-dom";
@@ -39,15 +40,16 @@ function App() {
           }
           `}
       </style>
+      <h2>Select your country</h2>
       <DropDownCountries countries={countries} onSelect={selectCountry} />
       {myCountries.map((item) => (
-        <ul key={item.name}>
+        <ListGroup key={item.name}>
           <h2>{item.name}</h2>
-          <li>Region: {item.region}</li>
-          <li>Area: {item.area}km²</li>
-          <li>Population: {item.population}</li>
-          <li>Code: {item.alpha3Code}</li>
-        </ul>
+          <ListGroup.Item>Region: {item.region}</ListGroup.Item>
+          <ListGroup.Item>Area: {item.area}km²</ListGroup.Item>
+          <ListGroup.Item>Population: {item.population}</ListGroup.Item>
+          <ListGroup.Item>Code: {item.alpha3Code}</ListGroup.Item>
+        </ListGroup>
       ))}
     </div>
   );
