@@ -22,5 +22,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+<<<<<<< HEAD
 src/server/node_modules
 src/server/password.js
+=======
+/password.js
+src/server/node_modules
+>>>>>>> e31f4f014faa0c590ea02b6df7767d1c46d41b40
