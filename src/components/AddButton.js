@@ -1,17 +1,23 @@
+import React, { useEffect, useState } from "react";
+
 const countriesList = [];
 
-const AddButton = (props) => {
-  const addCountry = () => {
-    countriesList.push(props.selected);
-    console.log(countriesList);
-  };
+const AddButton = ({ selected, onSelect }) => {
+  /*let displayIt = filtered.map((item) => (
+    <ul key={item.name}>
+      <h2>{item.name}</h2>
+      <li>Region: {item.region}</li>
+      <li>Area: {item.area}km²</li>
+      <li>Population: {item.population}</li>
+      <li>Code: {item.alpha3Code}</li>
+    </ul>
+  ));*/
+
+  const addCountry = () => {};
 
   return (
     <div>
-      <button onClick={addCountry}>Add Country</button>
-      {countriesList.map((country) => (
-        <li>{country}</li>
-      ))}
+      <button onClick={() => onSelect(selected)}>Add Country</button>
     </div>
   );
 };
