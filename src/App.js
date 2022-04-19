@@ -56,7 +56,7 @@ function App() {
     axios.get("http://localhost:3001/read").then((response) => {
       setCountriesList(response.data);
     });
-  }, []);
+  });
 
   return (
     <div>
