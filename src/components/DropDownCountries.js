@@ -3,7 +3,7 @@ import AddButton from "./AddButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 
-const DropDownCountries = ({ countries, onSelect }) => {
+const DropDownCountries = ({ countries, onSelect, onClick }) => {
   const [selects, setSelects] = useState();
 
   let optionItems = countries.map((country) => (
@@ -11,17 +11,22 @@ const DropDownCountries = ({ countries, onSelect }) => {
       {country.name}
     </option>
   ));
-
+  useEffect(() => {
+    console.log(selects);
+    onSelect(selects);
+  }, [selects]);
   return (
     <div className="allContent">
       <Form.Select
         style={{ fontSize: 15, width: 300, marginBottom: 15 }}
         value={selects}
-        onChange={(e) => setSelects(e.target.value)}
+        onChange={(e) => {
+          setSelects(e.target.value);
+        }}
       >
         {optionItems}
       </Form.Select>
-      <AddButton selected={selects} onSelect={onSelect} />
+      <AddButton selected={selects} onClick={onClick} />
     </div>
   );
 };

@@ -17,14 +17,11 @@ function App() {
       .then((result) => {
         setCountries(result);
       });
-  });
-
-  //let filtered = countries.filter((item) => item.name === data);
+  }, []);
 
   const selectCountry = (name) => {
     let filtered = countries.filter((item) => item.name === name);
     setMyCountries(myCountries.concat(filtered));
-    addToDb();
   };
 
   const addToDb = () => {
@@ -66,7 +63,11 @@ function App() {
           `}
       </style>
       <h2>Select your country</h2>
-      <DropDownCountries countries={countries} onSelect={selectCountry} />
+      <DropDownCountries
+        countries={countries}
+        onSelect={selectCountry}
+        onClick={addToDb}
+      />
       {myCountries.map((item) => (
         <ListGroup key={item.name}>
           <h2>{item.name}</h2>
