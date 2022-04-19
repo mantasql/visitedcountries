@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import AddButton from "./AddButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
+import ShowButton from "./ShowButton";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
-const DropDownCountries = ({ countries, onSelect, onClick }) => {
+const DropDownCountries = ({ countries, onSelect, onClick, display }) => {
   const [selects, setSelects] = useState();
 
   let optionItems = countries.map((country) => (
@@ -26,7 +30,16 @@ const DropDownCountries = ({ countries, onSelect, onClick }) => {
       >
         {optionItems}
       </Form.Select>
-      <AddButton selected={selects} onClick={onClick} />
+      <Container>
+        <Row xs={1} md={4} lg={6}>
+          <Col>
+            <AddButton selected={selects} onClick={onClick} />
+          </Col>
+          <Col>
+            <ShowButton display={display} />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

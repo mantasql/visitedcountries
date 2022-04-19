@@ -6,3 +6,7 @@ body {
 #allContent {
   display: flexbox;
 }
+
+.modal {
+  color: black;
+}

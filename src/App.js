@@ -7,6 +7,7 @@ import axios from "axios";
 function App() {
   const [countries, setCountries] = useState([]);
   const [myCountries, setMyCountries] = useState([]);
+  const [countriesList, setCountriesList] = useState([]);
 
   const URL =
     "https://restcountries.com/v2/all?fields=name,region,area,population,alpha3Code";
@@ -24,6 +25,7 @@ function App() {
     setMyCountries(filtered);
   };
 
+  //post to database
   const addToDb = () => {
     console.log("posting");
     let countryName;
@@ -49,6 +51,13 @@ function App() {
     });
   };
 
+  //get from database
+  useEffect(() => {
+    axios.get("http://localhost:3001/read").then((response) => {
+      setCountriesList(response.data);
+    });
+  }, []);
+
   return (
     <div>
       <style type="text/css">
@@ -57,9 +66,6 @@ function App() {
             background-color: black;
             color: white;
           }
-          li {
-            list-style: none;
-          }
           `}
       </style>
       <h2>Select your country</h2>
@@ -67,6 +73,7 @@ function App() {
         countries={countries}
         onSelect={selectCountry}
         onClick={addToDb}
+        display={countriesList}
       />
       {myCountries.map((item) => (
         <ListGroup key={item.name}>
