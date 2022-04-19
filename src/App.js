@@ -21,7 +21,7 @@ function App() {
 
   const selectCountry = (name) => {
     let filtered = countries.filter((item) => item.name === name);
-    setMyCountries(myCountries.concat(filtered));
+    setMyCountries(filtered);
   };
 
   const addToDb = () => {
