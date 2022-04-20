@@ -27,7 +27,6 @@ function App() {
 
   //post to database
   const addToDb = () => {
-    console.log("posting");
     let countryName;
     let countryRegion;
     let countryArea;
@@ -41,7 +40,6 @@ function App() {
       countryPopulation = item.population;
       alpha3Code = item.alpha3Code;
     });
-    console.log(countryName);
     axios.post("http://localhost:3001/insert", {
       countryName: countryName,
       countryRegion: countryRegion,
@@ -59,16 +57,18 @@ function App() {
   });
 
   return (
-    <div>
-      <style type="text/css">
-        {`
+    <div className="container bg-black">
+      <div className="d-flex justify-content-center">
+        <style type="text/css">
+          {`
           body {
             background-color: black;
             color: white;
           }
           `}
-      </style>
-      <h2>Select your country</h2>
+        </style>
+        <h1>Select your country</h1>
+      </div>
       <DropDownCountries
         countries={countries}
         onSelect={selectCountry}

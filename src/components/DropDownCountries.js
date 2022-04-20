@@ -21,25 +21,22 @@ const DropDownCountries = ({ countries, onSelect, onClick, display }) => {
   }, [selects]);
   return (
     <div className="allContent">
-      <Form.Select
-        style={{ fontSize: 15, width: 300, marginBottom: 15 }}
-        value={selects}
-        onChange={(e) => {
-          setSelects(e.target.value);
-        }}
-      >
-        {optionItems}
-      </Form.Select>
-      <Container>
-        <Row xs={1} md={4} lg={6}>
-          <Col>
-            <AddButton selected={selects} onClick={onClick} />
-          </Col>
-          <Col>
-            <ShowButton display={display} />
-          </Col>
-        </Row>
-      </Container>
+      <div className="d-flex justify-content-center">
+        <Form.Select
+          style={{ fontSize: 15, width: 350, marginBottom: 15 }}
+          value={selects}
+          onChange={(e) => {
+            setSelects(e.target.value);
+          }}
+        >
+          {optionItems}
+        </Form.Select>
+      </div>
+      <div className="d-flex justify-content-center">
+        <AddButton selected={selects} onClick={onClick} />
+
+        <ShowButton display={display} />
+      </div>
     </div>
   );
 };
