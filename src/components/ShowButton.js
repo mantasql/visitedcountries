@@ -10,6 +10,10 @@ const ShowButton = ({ display }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const deleteCountry = (id) => {
+    axios.delete(`http://localhost:3001/delete/${id}`);
+  };
+
   return (
     <div>
       <Button variant="outline-success" onClick={handleShow}>
@@ -22,15 +26,24 @@ const ShowButton = ({ display }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {display.map((item) => (
-            <ListGroup key={item._id}>
-              <h4>{item.countryName}</h4>
-              <ListGroup.Item>Region: {item.countryRegion} </ListGroup.Item>
-              <ListGroup.Item>Area: {item.countryArea}km²</ListGroup.Item>
+          {display.map((val, key) => (
+            <ListGroup key={key}>
+              <h4>
+                {val.countryName}{" "}
+                <Button
+                  variant="outline-danger"
+                  size="sm"
+                  onClick={() => deleteCountry(val._id)}
+                >
+                  x
+                </Button>
+              </h4>
+              <ListGroup.Item>Region: {val.countryRegion} </ListGroup.Item>
+              <ListGroup.Item>Area: {val.countryArea}km²</ListGroup.Item>
               <ListGroup.Item>
-                Population: {item.countryPopulation}
+                Population: {val.countryPopulation}
               </ListGroup.Item>
-              <ListGroup.Item>Code: {item.alpha3Code}</ListGroup.Item>
+              <ListGroup.Item>Code: {val.alpha3Code}</ListGroup.Item>
             </ListGroup>
           ))}
         </Modal.Body>
