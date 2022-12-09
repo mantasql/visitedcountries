@@ -19,6 +19,10 @@ function App() {
   });
 
   //let filtered = countries.filter((item) => item.name === data);
+  const selectCountryz = (name) => {
+    let filtered = countries.filter((item) => item.name === name);
+    setMyCountries(myCountries.concat(filtered));
+  };
 
   const selectCountry = (name) => {
     let filtered = countries.filter((item) => item.name === name);
