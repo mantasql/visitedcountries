@@ -2,22 +2,30 @@ const url = require("./password");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const cors = require("cors");
 
 const CountryModel = require("./models/Country");
 
 app.use(express.json());
+app.use(cors());
 
 mongoose.connect(url.url, {
   useNewUrlParser: true,
 });
 
-app.get("/", async (req, res) => {
+app.post("/insert", async (req, res) => {
+  const countryName = req.body.countryName;
+  const countryRegion = req.body.countryRegion;
+  const countryArea = req.body.countryArea;
+  const countryPopulation = req.body.countryPopulation;
+  const alpha3Code = req.body.alpha3Code;
+
   const country = new CountryModel({
-    countryName: "Lithuania",
-    countryRegion: "Europe",
-    countryArea: 50,
-    countryPopulation: 50,
-    alpha3Code: "LTU",
+    countryName: countryName,
+    countryRegion: countryRegion,
+    countryArea: countryArea,
+    countryPopulation: countryPopulation,
+    alpha3Code: alpha3Code,
   });
 
   try {
@@ -25,6 +33,23 @@ app.get("/", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+app.get("/read", async (req, res) => {
+  CountryModel.find({}, (err, result) => {
+    if (err) {
+      res.send(err);
+    }
+
+    res.send(result);
+  });
+});
+
+app.delete("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+
+  await CountryModel.findByIdAndRemove(id).exec();
+  res.send("deleted");
 });
 
 app.listen(3001, () => {
